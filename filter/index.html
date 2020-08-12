@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filterable List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"
+        integrity="sha256-13EKEXRsynh3cmmNF1dlW6uvoC1SZVaW94bIHZQJoMU=" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="center-align">My Projects</h1>
+
+        <input type="text" id="filter-input" placeholder="Search projects ...">
+
+        <ul id="projects" class="collection with-header">
+            <li class="collection-header">
+                <h5>A</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Await</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Async</a>
+            </li>
+
+            <li class="collection-header">
+                <h5>B</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Bingo</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Bear</a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // Get input element
+        let filterInput = document.getElementById('filter-input');
+
+        // Add event listener
+        filterInput.addEventListener('keyup', filterNames);
+
+        function filterNames() {
+            // Get value of input
+            let filterValue = document.getElementById('filter-input').value.toUpperCase();
+
+            // Get names ul
+            let ul = document.getElementById('projects');
+            // Get lis from ul
+            let li = ul.querySelectorAll('li.collection-item');
+
+            // Loop through collection-item lis
+            for (let i = 0; i < li.length; i++) {
+                let a = li[i].getElementsByTagName('a')[0];
+                // If matched
+                if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                } else {
+                    li[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
